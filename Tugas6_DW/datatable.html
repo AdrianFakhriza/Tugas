@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data_Tables</title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.dataTables.css">
+</head>
+<body>
+    <table id="datauser" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Password</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>admin</td>
+                <td>admin@gmail.com</td>
+                <td>admin123</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Password</th>
+            </tr>
+        </tfoot>
+    </table>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
+    <script>
+        $(document).ready(function() {
+            var table = new DataTable('#datauser');
+
+            // Mendapatkan parameter dari URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const username = urlParams.get('username');
+            const email = urlParams.get('email');
+            const password = urlParams.get('password');
+
+            // Menambahkan data ke tabel jika parameter ada
+            if (username && email && password) {
+                table.row.add([username, email, password]).draw();
+            }
+        });
+    </script>
+</body>
+</html>
